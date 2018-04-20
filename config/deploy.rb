@@ -10,7 +10,7 @@ set :repo_url, "git@github.com:1261847034/rails_ott.git"
 set :rvm_ruby_version, '2.5.1'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/go/src/#{fetch(:application)}_#{fetch(:stage)}"
+set :deploy_to, "/home/ishanggang_dev/go/src/#{fetch(:application)}_#{fetch(:stage)}"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -27,6 +27,7 @@ set :deploy_to, "/go/src/#{fetch(:application)}_#{fetch(:stage)}"
 set :linked_files, %W{
   config/database.yml config/nginx.conf config/secrets.yml
   config/unicorn/production.rb config/storage.yml
+
 }
 
 # Default value for linked_dirs is []

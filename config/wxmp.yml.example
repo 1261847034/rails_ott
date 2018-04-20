@@ -1,7 +1,7 @@
 default: &default
   api_host: "https://api.weixin.qq.com"
-  app_id: "wx3a5d16268094dc5b"
-  app_secret: "cb820c315107e25eca28c1a09a17a62d"
+  app_id: "xxx"
+  app_secret: "xxx"
 
 development:
   <<: *default
