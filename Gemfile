@@ -36,6 +36,20 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'settingslogic'
+
+# RequestStore gives you per-request global storage.
+gem 'request_store', '~> 1.4', '>= 1.4.1'
+
+# Makes http fun! Also, makes consuming restful web services dead easy.
+gem 'httparty', '~> 0.16', '>= 0.16.2'
+
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-cors', '~> 1.0', '>= 1.0.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -48,6 +62,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'capistrano-rails', '~> 1.3', '>= 1.3.1'
+  gem 'capistrano3-unicorn', '~> 0.2', '>= 0.2.1'
+  gem 'capistrano-rvm', '~> 0.1', '>= 0.1.2'
+  gem 'capistrano-sidekiq', '~> 1.0.1'
 end
 
 group :test do
@@ -58,5 +77,18 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Use unicorn as the app server
+group :production do
+  # unicorn is an HTTP server for Rack applications designed to only serve fast
+  # clients on low-latency, high-bandwidth connections and take advantage of
+  # features in Unix/Unix-like kernels.
+  gem 'unicorn', '~> 5.4', '>= 5.4.0'
+  # raindrops is a real-time stats toolkit to show statistics
+  # for Rack HTTP servers.
+  gem 'raindrops', '~> 0.19', '>= 0.19.0'
+  # Kill unicorn workers by memory and request counts
+  gem 'unicorn-worker-killer', '~> 0.4', '>= 0.4.4'
+  # New Relic is a performance management system,
+  # developed by New Relic, Inc (http://www.newrelic.com)
+  gem 'newrelic_rpm', '~> 5.0', '>= 5.0.0.342'
+end

@@ -29,3 +29,12 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+config/database.yml
+config/nginx.conf
+config/secrets.yml
+config/unicorn/production.rb
+config/services.yml
+config/newrelic.yml
+config/storage.yml
+config/wxmp.yml
+config/alipay.yml

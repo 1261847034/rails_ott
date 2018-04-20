@@ -15,5 +15,13 @@ module RailsOtt
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # Timezone
+    config.time_zone = 'Beijing'
+
+    config.autoload_paths += Dir[Rails.root.join("app/settings")] +
+                             Dir[Rails.root.join("app/services")] +
+                             Dir[Rails.root.join("app/services/concerns")]
+
   end
 end
