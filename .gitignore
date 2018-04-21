@@ -40,3 +40,5 @@ config/newrelic.yml
 config/storage.yml
 config/wxmp.yml
 config/alipay.yml
+
+db/schema.rb
