@@ -24,7 +24,8 @@ module RailsOtt
 
     config.autoload_paths += Dir[Rails.root.join("app/settings")] +
                              Dir[Rails.root.join("app/services")] +
-                             Dir[Rails.root.join("app/services/concerns")]
+                             Dir[Rails.root.join("app/services/concerns")] +
+                             Dir[Rails.root.join("app/models/wxmp")]
 
   end
 end

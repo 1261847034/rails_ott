@@ -27,6 +27,7 @@ set :deploy_to, "/home/ishanggang_dev/go/src/#{fetch(:application)}_#{fetch(:sta
 set :linked_files, %W{
   config/database.yml config/nginx.conf config/secrets.yml
   config/unicorn/production.rb config/storage.yml
+  config/alipay.yml config/wxmp.yml
 
 }
 

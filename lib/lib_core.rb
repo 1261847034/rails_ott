@@ -4,3 +4,4 @@ require 'alipay/cipher'
 
 require 'wxmp/logger'
 require 'wxmp/cipher'
+require 'wxmp/utils'

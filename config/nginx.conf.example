@@ -6,11 +6,11 @@ server {
   listen 80;# default deferred;
   server_name test.work.99zmall.com;
 
-  root /home/ishanggang_dev/go/src/rails_ott/current/public;
+  root /home/ishanggang_dev/go/src/rails_ott_staging/current/public;
 
   # individual nginx logs for vhost
-  access_log  /var/log/nginx/nazgrel_qa_access.log;
-  error_log   /var/log/nginx/nazgrel_qa_error.log;
+  access_log  /var/log/nginx/rails_ott_access.log;
+  error_log   /var/log/nginx/rails_ott_error.log;
 
   gzip on;
   gzip_min_length 1k;
@@ -46,5 +46,6 @@ server {
 }
 
 # include /etc/nginx/conf.d/*.conf;
-# sudo ln -nfs /home/ishanggang_dev/go/src/rails_ott/shared/config/nginx.conf /etc/nginx/conf.d/rails_ott.conf
+# sudo ln -nfs /home/ishanggang_dev/go/src/rails_ott_staging/shared/config/nginx.conf /etc/nginx/conf.d/rails_ott.conf
 # sudo /etc/init.d/nginx reload
+# ~/.rvm/bin/rvm 2.5.1 do bundle exec unicorn -c /home/ishanggang_dev/go/src/rails_ott_staging/current/config/unicorn/production.rb -E production -D
