@@ -15,7 +15,7 @@ module Wxmpish
       exec_time = Time.now - start_time
       Wxmp.log_info "get_data: url: #{url}, exec time: #{exec_time}, response = #{res}, body = #{res.body}"
 
-      unless response.code.to_i == STATUS
+      unless res.code.to_i == STATUS
         return HashWithIndifferentAccess.new
       end
 

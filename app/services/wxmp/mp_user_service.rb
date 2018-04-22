@@ -33,11 +33,29 @@ module Wxmp
     end
 
     def msg_type_text(data)
+      str = "<xml>
+        <ToUserName><![CDATA[#{data[:xml][:FromUserName]}]]></ToUserName>
+        <FromUserName><![CDATA[#{@wx_mp_user.uid}]]></FromUserName>
+        <CreateTime>#{DateTime.now.to_i}</CreateTime>
+        <MsgType><![CDATA[text]]></MsgType>
+        <Content><![CDATA[你好]]></Content>
+      </xml>"
 
+      nonce = SecureRandom.hex(4)
+      timestamp = DateTime.now.strftime("%Q")
+      msg_encrypt = encrypt(str, @wx_mp_user.app_id, @wx_mp_user.aes_key)
+      msg_signature = sign(msg_encrypt, nonce, timestamp, token: @wx_mp_user.token)
+
+      "<xml>
+        <Encrypt><![CDATA[#{msg_encrypt}]]></Encrypt>
+        <MsgSignature><![CDATA[#{msg_signature}]]></MsgSignature>
+        <TimeStamp>#{timestamp}</TimeStamp>
+        <Nonce><![CDATA[#{nonce}]]></Nonce>
+      </xml>"
     end
 
     def event_listener(data)
-      case data[:xml][:event]
+      case data[:xml][:Event]
         when "subscribe"
           event_subscribe(data)
         when "unsubscribe"
@@ -51,6 +69,8 @@ module Wxmp
       openid = xml[:FromUserName]
       data = get_user_info(openid)
       return if data.blank?
+
+      Wxmp.log_info "data :#{data}"
 
       attrs = {
         wx_mp_user: @wx_mp_user,
@@ -79,7 +99,7 @@ module Wxmp
       xml = data[:xml]
 
       wx_user = @wx_mp_user.wx_users.find_by(openid: xml[:FromUserName])
-      wx_user.update(subscribe: false)
+      wx_user.update(subscribe: false) if wx_user
     end
 
   end

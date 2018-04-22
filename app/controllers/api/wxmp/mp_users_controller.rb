@@ -23,7 +23,7 @@ class Api::Wxmp::MpUsersController < Api::Wxmp::BaseController
       return render plain: 'failure'
     end
 
-    result = @service.event_listener(data)
+    result = @service.msg_type_listener(data)
 
     render plain: result || 'failure'
   end

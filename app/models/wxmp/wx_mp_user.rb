@@ -17,7 +17,7 @@ class WxMpUser < ApplicationRecord
     if data.present?
       expired_at = DateTime.now + data[:expires_in].seconds - 5.minutes
       update(
-        access_token: data[:suite_access_token],
+        access_token: data[:access_token],
         access_token_expired_at: expired_at
       )
     end
