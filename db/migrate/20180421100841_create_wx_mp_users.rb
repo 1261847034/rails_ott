@@ -2,6 +2,7 @@ class CreateWxMpUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :wx_mp_users do |t|
       t.string :name
+      t.string :uid
       t.string :app_id
       t.string :app_secret
       t.string :token

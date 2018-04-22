@@ -13,11 +13,11 @@ module Wxmpish
       key = key || options[:key]
       aes_key = aes_key || options[:aes_key]
 
-      Wx::Cipher.decrypt(encrypt_data, key, aes_key)
+      Wxmp::Cipher.decrypt(encrypt_data, key, aes_key)
     end
 
     def sign(encrypt, nonce = nil, timestamp = nil, **options)
-      token = cipher.token
+      token = options[:token]
       nonce = nonce || options[:nonce] || SecureRandom.hex(4)
       timestamp = timestamp || options[:timestamp] || DateTime.now.strftime("%Q")
       encrypt = encrypt || options[:encrypt]

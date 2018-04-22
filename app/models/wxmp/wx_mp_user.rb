@@ -1,5 +1,7 @@
 class WxMpUser < ApplicationRecord
 
+  has_many :wx_users
+
   def access_token_expired?
     expired = self.access_token_expired_at.present? ? DateTime.now >= self.access_token_expired_at : true
     if access_token.blank? or expired

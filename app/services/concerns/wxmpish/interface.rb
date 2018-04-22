@@ -12,5 +12,11 @@ module Wxmpish
       get "cgi-bin/ticket/getticket?access_token=#{wx_mp_user.access_token}&type=jsapi"
     end
 
+    def get_user_info(openid)
+      return if wx_mp_user.access_token_expired?
+
+      get "cgi-bin/user/info?access_token=#{wx_mp_user.access_token}&openid=#{openid}&lang=zh_CN"
+    end
+
   end
 end

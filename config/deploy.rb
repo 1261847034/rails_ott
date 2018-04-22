@@ -35,7 +35,7 @@ set :linked_files, %W{
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 set :linked_dirs, %w{
   config/unicorn log tmp/pids tmp/cache tmp/sockets
-  vendor/bundle public/system
+  vendor/bundle public/system public/db
 }
 
 # Default value for default_env is {}
