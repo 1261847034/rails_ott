@@ -21,7 +21,7 @@ module Wxmp
 
       timestamp = DateTime.now.strftime("%s")
       nonce_str = SecureRandom.hex(4)
-      request_url = "#{wx_mp_user.callback_url_host}#{fullpath}"
+      request_url = "#{wx_mp_user.jsapi_host}#{fullpath}"
       signature = jsapi_sign(wx_mp_user.jsapi_ticket, request_url, nonce_str, timestamp)
 
       {

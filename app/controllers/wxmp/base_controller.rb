@@ -4,4 +4,8 @@ class Wxmp::BaseController < ApplicationController
     RequestStore.store[:request_uuid] = request.uuid
   end
 
+  def micro_messenger_browser?
+    request.user_agent.to_s.include?('MicroMessenger')
+  end
+
 end

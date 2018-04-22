@@ -1,0 +1,44 @@
+<div><a href="javascript:;" id="test">拍照或从手机相册中选图接口测试0</a></div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+
+    var appId = "<%= @jsapi_config[:app_id] %>";
+    var nonceStr = "<%= @jsapi_config[:nonce_str] %>";
+    var timeStamp = "<%= @jsapi_config[:time_stamp] %>";
+    var signature = "<%= @jsapi_config[:signature] %>";
+    var jsApiList = [
+        'chooseImage'
+    ];
+
+    var configParams = {
+        // beta: true,
+        debug: true,
+        appId: appId,
+        timestamp: timeStamp,
+        nonceStr: nonceStr,
+        signature: signature,
+        jsApiList: jsApiList
+    };
+
+    $(function () {
+        wx.config(configParams);
+
+        wx.ready(function() {
+            wx.error(function (res) {
+                alert(JSON.stringify(res));
+            });
+        });
+
+        $('#test').on("click", function() {
+            wx.chooseImage({
+                count: 1,
+                sizeType: ['original', 'compressed'],
+                sourceType: ['album', 'camera'],
+                success: function (res) {
+                    alert(JSON.stringify(res))
+                }
+            });
+        });
+    });
+</script>

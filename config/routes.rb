@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :wxmp do
     get ":id/home", to: "dashboard#home"
     get "home", to: "dashboard#home"
+    get "dashboard", to: "dashboard#index"
   end
 
 end
