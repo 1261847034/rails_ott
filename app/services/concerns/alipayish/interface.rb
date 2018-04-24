@@ -64,6 +64,30 @@ module Alipayish
       post "gateway.do", prepare_params(params)
     end
 
+    def alipay_system_oauth_token(params = {})
+      params.merge!(method: "alipay.system.oauth.token")
+
+      post "gateway.do", prepare_params(params)
+    end
+
+    def alipay_user_info_share(params = {})
+      params.merge!(method: "alipay.user.info.share")
+
+      post "gateway.do", prepare_params(params)
+    end
+
+    def alipay_open_auth_token_app(params = {})
+      params.merge!(method: "alipay.open.auth.token.app")
+
+      post "gateway.do", prepare_params(params)
+    end
+
+    def alipay_open_auth_token_app_query(params = {})
+      params.merge!(method: "alipay.open.auth.token.app.query")
+
+      post "gateway.do", prepare_params(params)
+    end
+
     def test(params = {})
       post "gateway.do", prepare_params(params)
     end

@@ -14,4 +14,10 @@ Rails.application.routes.draw do
     get "dashboard", to: "dashboard#index"
   end
 
+  namespace :alipay do
+    get "home", to: "dashboard#home"
+    get "dashboard", to: "dashboard#index"
+    get "authorization", to: "dashboard#authorization"
+  end
+
 end

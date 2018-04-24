@@ -34,7 +34,7 @@ module Alipayish
       start_time = Time.now
       res = HTTParty.post(url, body: params)
       exec_time = Time.now - start_time
-      Alipay.log_info "post_json: url: #{url}, exec time: #{exec_time}, response = #{res.inspect}, body = #{res.body.inspect}, params = #{params.inspect}"
+      Alipay.log_info "post_json: url: #{url}, exec time: #{exec_time}, response = #{res.inspect}, body = #{res.body.force_encoding("UTF-8")}, params = #{params.inspect}"
 
       unless res.code.to_i == STATUS
         return HashWithIndifferentAccess.new
@@ -44,8 +44,13 @@ module Alipayish
       data = JSON.parse(data) if data.is_a? String
       key = "#{params[:method].gsub(/\./, '_')}_response"
 
-      unless data[key]["code"].to_i == CODE
-        @err_key = key
+      unless data.has_key?(key)
+        @err_res = data
+        return HashWithIndifferentAccess.new
+      end
+
+      code = data[key]["code"]
+      unless !code || (code.to_i == CODE)
         @err_res = data
         return HashWithIndifferentAccess.new
       end
